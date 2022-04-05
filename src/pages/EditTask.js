@@ -1,17 +1,16 @@
-import nanoId from "nano-id";
-import React, { useState, useContext } from "react";
+import React,{useContext, useState} from "react";
 import { TaskContext } from "../TaskContext";
 
-export default function CreateTask() {
-  const {addNewTask} = useContext(TaskContext)
-  const [formInput, setFormInput] = useState('')
+export default function EditTask(props) {
 
+  const task = props.task
+  const {editTask} = useContext(TaskContext)
+  const [formInput, setFormInput] = useState(task.task_body)
+  
   function handleInput(event) {
     const {value} = event.target
     setFormInput(value)
   }
-  
-
 
   return(
     <div className="form">
@@ -21,7 +20,7 @@ export default function CreateTask() {
         placeholder="Task"
         value={formInput}
         onChange={handleInput}/>
-      <button onClick={() => addNewTask(formInput)}>Create</button>
+      <button onClick={() => editTask({task_body:formInput,id:task.id})}>Update</button>
     </div>
   )
-}
+} 

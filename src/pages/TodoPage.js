@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import {Link} from 'react-router-dom'
 import { TaskContext } from '../TaskContext'
 
 export default function Todo_page() {
@@ -15,11 +16,10 @@ export default function Todo_page() {
           }
           <span className="task-body">{task.task_body}</span>
         </div>
-        <i className="ri-pencil-line"></i>
+        <Link to='/edit' state={task}><i className="ri-pencil-line"></i></Link>
       </div>
   ))
   
-
   return(
     <div className='tasks-container'>
       {tasksEl}

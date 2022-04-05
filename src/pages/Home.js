@@ -10,8 +10,9 @@ export default function Home() {
   return(
     <div className="stats-flex">
       <div className="stats-container">
-        <div className="stats">{length}   Todo Tasks</div>
-        <div className="stats">{comp_tasks}   Completed Task</div>
+        <div className="stats">{length} Total Tasks</div>
+        <div className="stats">{comp_tasks} Completed Task</div>
+        <div className="stats">{length - comp_tasks} Remaining Task</div>
       </div>
     </div>
   )

@@ -51,8 +51,9 @@ main {
 .main-body {
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  padding: 1em 0;
+  min-height: 90vh;
+  padding: 3em 0;
+
   align-items: center;
   justify-content: space-between;
 }
@@ -81,6 +82,7 @@ main {
 }
 
 .new-task-btn {
+  margin-top: 5em;
   background-color: #457B9D;
   color: white;
   width: fit-content;
@@ -148,4 +150,12 @@ i {
   background-color: #1D3557;
   margin-left: 1em;
   border: 1px solid #457B9D;
+}
+
+/* =========================
+    CREATE TASK STYLES 
+   =========================*/
+
+.form{
+  margin: auto;
 }
