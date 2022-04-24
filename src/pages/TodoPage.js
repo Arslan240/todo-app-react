@@ -4,7 +4,7 @@ import { TaskContext } from '../TaskContext'
 
 export default function Todo_page() {
 
-  const {tasks, toggleComplete} = useContext(TaskContext)
+  const {tasks, toggleComplete, deleteTask} = useContext(TaskContext)
 
   
   const tasksEl = tasks.map(task => (
@@ -16,13 +16,16 @@ export default function Todo_page() {
           }
           <span className="task-body">{task.task_body}</span>
         </div>
-        <Link to='/edit' state={task}><i className="ri-pencil-line"></i></Link>
+        <div className='task-icons-right'>
+          <i className="ri-delete-bin-6-fill" onClick={() => deleteTask(task.id)}></i>
+          <Link to='/edit' state={task}><i className="ri-pencil-line"></i></Link>
+        </div>
       </div>
   ))
   
   return(
     <div className='tasks-container'>
-      {tasksEl}
+      {tasksEl.length > 0 ? tasksEl : <h1>No tasks</h1>}
     </div>    
   )
 }

@@ -6,6 +6,8 @@ const TaskContext = createContext()
 function TaskContextProvider(props) {
 
   const [tasks, setTasks] = useState([])
+  const [showTodos, setShowTodos] = useState(false) //to show all tasks while editing or creating a task
+
   console.log(tasks);
   function toggleComplete(clicked_id) {
     setTasks(prevTasks => {
@@ -41,6 +43,11 @@ function TaskContextProvider(props) {
     })
   }
 
+  function deleteTask(taskID){
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskID))
+  }
+
+  // gets stored tasks from local storage and sets the state
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
     if(storedTasks){
@@ -49,6 +56,7 @@ function TaskContextProvider(props) {
     }
   },[])
   
+  // Whenever tasks state changes it updates the localstorage 
   useEffect(() => { 
     localStorage.setItem('tasks', JSON.stringify(tasks))
     console.log('stored to local storage');
@@ -61,7 +69,10 @@ function TaskContextProvider(props) {
       setTasks,
       toggleComplete,
       addNewTask,
-      editTask
+      editTask,
+      deleteTask,
+      showTodos,
+      setShowTodos
     }}>
       {props.children}
     </TaskContext.Provider>

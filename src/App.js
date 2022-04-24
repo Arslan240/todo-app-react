@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Route, Link, Routes, useLocation} from 'react-router-dom'
 import './App.css';
 import Home from './pages/Home';
 import TodoPage from './pages/TodoPage';
 import CreateTask from './pages/CreateTask';
 import EditTask from './pages/EditTask';
+import { TaskContext } from './TaskContext';
 
 function App() {
+  const {showTodos, setShowTodos} = useContext(TaskContext)
   const location = useLocation()
   const {state} = location
-  
+   
 
   return (
     <main>
@@ -25,7 +27,18 @@ function App() {
             <Route path='/create' element={<CreateTask />}/>
             <Route path='/edit' element={<EditTask task={state}/>}/>
           </Routes>
-          <Link to='/create'><div className="btn new-task-btn">Create New Task</div></Link>
+          {showTodos && 
+            <Routes>
+              <Route path='/todos'/>
+            </Routes>
+          }
+          <Link to='/create'>
+            <div className="btn new-task-btn"
+              onClick={()=> setShowTodos(true)}
+            >
+              Create New Task
+            </div>
+          </Link>
       </div>
     </main>
 

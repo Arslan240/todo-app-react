@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { TaskContext } from "../TaskContext";
 
 export default function CreateTask() {
-  const {addNewTask} = useContext(TaskContext)
+  const {addNewTask, setShowTodos} = useContext(TaskContext)
   const [formInput, setFormInput] = useState('')
 
   function handleInput(event) {
@@ -21,7 +21,14 @@ export default function CreateTask() {
         placeholder="Task"
         value={formInput}
         onChange={handleInput}/>
-      <button onClick={() => addNewTask(formInput)}>Create</button>
+      <button onClick={() => {
+          addNewTask(formInput) 
+          setShowTodos(false)
+        }
+      }
+      >
+        Create
+      </button>
     </div>
   )
 }

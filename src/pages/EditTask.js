@@ -4,7 +4,7 @@ import { TaskContext } from "../TaskContext";
 export default function EditTask(props) {
 
   const task = props.task
-  const {editTask} = useContext(TaskContext)
+  const {editTask, setShowTodos} = useContext(TaskContext)
   const [formInput, setFormInput] = useState(task.task_body)
   
   function handleInput(event) {
@@ -20,7 +20,14 @@ export default function EditTask(props) {
         placeholder="Task"
         value={formInput}
         onChange={handleInput}/>
-      <button onClick={() => editTask({task_body:formInput,id:task.id})}>Update</button>
+
+      <button onClick={() => {
+          editTask({task_body:formInput,id:task.id})
+          setShowTodos(false)
+        }}
+      >
+        Update
+      </button>
     </div>
   )
 } 

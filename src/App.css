@@ -76,9 +76,10 @@ main {
   /* outline: 1px solid red; */
   font-size: 2rem;
   font-weight: bold;
-  padding: 2em;
+  padding: 1em 2em;
   margin-left: 1em;
-  height: min-content;
+  width: min-content;
+  /* height: min-content; */
 }
 
 .new-task-btn {
@@ -120,7 +121,7 @@ i {
   margin-right: 1em;
 }
 
-.task > i {
+.task-icons-right > a{
   margin-left: 1em;
 }
 
